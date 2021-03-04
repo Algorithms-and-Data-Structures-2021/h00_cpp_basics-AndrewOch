@@ -19,21 +19,37 @@ void swap_args(int *lhs, int *rhs) {
 // Задание 2
 int **allocate_2d_array(int num_rows, int num_cols, int init_value) {
 
-    int **array[num_cols][num_rows];
+    if (num_cols <= 0 | num_rows <= 0) { return nullptr; }
 
-    for (int i = 0; i < num_cols; ++i) {
-        for (int j = 0; j < num_rows; ++j) {
-            **array[i][j] = init_value;
+    int **array = new int *[num_rows];
+
+    for (int i = 0; i < num_rows; ++i) {
+        array[i] = new int[num_cols];
+    }
+
+    for (int i = 0; i < num_rows; ++i) {
+        for (int j = 0; j < num_cols; ++j) {
+            array[i][j] = init_value;
         }
     }
-    return **array;
+    return array;
+
 }
 
 // Задание 3
 bool copy_2d_array(int **arr_2d_source, int **arr_2d_target, int num_rows, int num_cols) {
-    // напишите код здесь ...
 
-    return false;
+    if (*arr_2d_source || *arr_2d_target || **arr_2d_source || **arr_2d_target || (num_rows <= 0) || (num_cols <= 0)) {
+        
+
+        return false; }
+
+    for (int i = 0; i < num_rows; ++i) {
+        for (int j = 0; j < num_cols; ++j) {
+            arr_2d_target[i][j] = arr_2d_source[i][j];
+        }
+    }
+    return true;
 }
 
 // Задание 4
@@ -45,13 +61,20 @@ void reverse_1d_array(vector<int> &arr) {
 
 // Задание 5
 void reverse_1d_array(int *arr_begin, int *arr_end) {
-
+    for (int i = *arr_begin; i < *arr_end / 2; ++i) {
+        swap_args((&arr_end[i]), (&arr_end[*arr_end - 1 - i]));
+    }
 }
 
 // Задание 6
 int *find_max_element(int *arr, int size) {
-    // напишите код здесь ...
-    return nullptr;
+    int *max = reinterpret_cast<int *>(arr[0]);
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > *max) {
+            *max = arr[i];
+        }
+    }
+    return max;
 }
 
 // Задание 7
