@@ -27,6 +27,17 @@ int main() {
         }
     }
 
+    int arr5[] = {1, 3, 4, 6, 7, 8};
+
+    reverse_1d_array(&arr5[0], &arr5[6]);
+    cout << arr5[3] << " ";
+
+    cout << "Array: ";
+    for (int i = 0; i < 6; ++i) {
+        cout << arr5[i] << " ";
+    }
+
+
     vector<int> arr = {1, 2, 4, 5};
     reverse_1d_array(arr);
 
